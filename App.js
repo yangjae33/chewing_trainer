@@ -4,7 +4,6 @@ import { View, Text, Dimensions } from "react-native";
 import { AppLoading } from "expo";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import rootReducer from "./modules";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
@@ -14,7 +13,6 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 const Tab = createMaterialTopTabNavigator();
 const DeviceWidth = Dimensions.get("window").width;
-const store = createStore(rootReducer, composeWithDevTools());
 const fetchFonts = () => {
   return Font.loadAsync({
     Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -37,7 +35,7 @@ function App() {
   }
 
   return (
-    <Provider store={store}>
+    <Provider>
       <AppNavigator></AppNavigator>
     </Provider>
   );
