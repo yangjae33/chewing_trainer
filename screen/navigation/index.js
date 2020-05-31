@@ -3,6 +3,7 @@ import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { View, Text, Dimensions } from "react-native";
 import React, { useState, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Foundation from "react-native-vector-icons/Foundation";
 import StackChewing from "./chewingCalculateNav";
 import StackHome from "./homeNav";
 import StackResult from "./resultNav";
@@ -23,7 +24,11 @@ const Nav = createMaterialTopTabNavigator(
       navigationOptions: {
         tabBarLabel: "측정하기",
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="bell" color={"white"} size={26} />
+          <MaterialCommunityIcons
+            name="scale-balance"
+            color={"white"}
+            size={26}
+          />
         ),
       },
     },
@@ -32,7 +37,7 @@ const Nav = createMaterialTopTabNavigator(
       navigationOptions: {
         tabBarLabel: "결과보기",
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="account" color={"white"} size={26} />
+          <Foundation name="results" color={"white"} size={26} />
         ),
       },
     },
