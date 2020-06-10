@@ -7,6 +7,7 @@ import Foundation from "react-native-vector-icons/Foundation";
 import StackChewing from "./chewingCalculateNav";
 import StackHome from "./homeNav";
 import StackResult from "./resultNav";
+import SideMenu from "../Common/SideMenu";
 const DeviceWidth = Dimensions.get("window").width;
 const Nav = createMaterialTopTabNavigator(
   {

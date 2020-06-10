@@ -4,15 +4,31 @@ import { Appbar, Title } from "react-native-paper";
 import { Button } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Modal from "react-native-modal";
+import SideMenu from "./SideMenu";
+import { Dimensions } from "react-native";
 
 function Header({ titleText, prev, navigation }) {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isMenuVisible, setMenuVisible] = useState(false);
+  console.log(isMenuVisible);
   const showExplainModal = () => {
     setModalVisible(true);
+  };
+  const showLeftMenu = () => {
+    setMenuVisible(true);
+  };
+  const showSideMenuCallback = (value) => {
+    setMenuVisible(value);
   };
   return (
     <Appbar.Header style={styles.headerContainer}>
       <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.leftMenu}
+          onPress={() => showLeftMenu()}
+        >
+          <AntDesign size={24} name="questioncircleo" color="white" />
+        </TouchableOpacity>
         <Title style={styles.title}>{titleText}</Title>
         <TouchableOpacity
           style={styles.prevBtn}
@@ -21,6 +37,11 @@ function Header({ titleText, prev, navigation }) {
           <AntDesign size={24} name="questioncircleo" color="white" />
         </TouchableOpacity>
       </View>
+      <SideMenu
+        isMenuVisible={isMenuVisible}
+        setModalVisible={setModalVisible}
+        showSideMenuCallback={showSideMenuCallback}
+      ></SideMenu>
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContent}>
           <View style={styles.explainTopView}>
@@ -56,6 +77,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   prevBtn: { position: "absolute", right: 20 },
+  leftMenu: { position: "absolute", left: 20 },
+
   modalContent: {
     flexDirection: "column",
     backgroundColor: "#4374D9",
