@@ -35,9 +35,7 @@ function App() {
   }
 
   return (
-    <Provider>
       <AppNavigator></AppNavigator>
-    </Provider>
   );
 }
 
