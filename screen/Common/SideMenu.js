@@ -5,6 +5,10 @@ import { Dimensions } from "react-native";
 var width = Dimensions.get("window").width; //full width
 var height = Dimensions.get("window").height; //full height
 function SideMenu({ navigation, showSideMenuCallback, isMenuVisible }) {
+  const clickMenu = (menu) => {
+    navigation.navigate(menu);
+    showSideMenuCallback(false);
+  };
   return (
     <Modal
       animationIn="slideInLeft"
@@ -25,21 +29,27 @@ function SideMenu({ navigation, showSideMenuCallback, isMenuVisible }) {
 
           <TouchableOpacity
             style={styles.menuList}
-            onPress={() => navigation.navigate("homeView")}
+            onPress={() => clickMenu("profile")}
           >
-            <Text style={styles.closeButton}>메뉴1</Text>
+            <Text style={styles.closeButton}>프로필</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.menuList}
-            onPress={() => navigation.navigate("chewingView")}
+            onPress={() => clickMenu("chewingView")}
           >
-            <Text style={styles.closeButton}>메뉴2</Text>
+            <Text style={styles.closeButton}>측정하기</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.menuList}
-            onPress={() => navigation.navigate("resultView")}
+            onPress={() => clickMenu("resultView")}
           >
-            <Text style={styles.closeButton}>메뉴3</Text>
+            <Text style={styles.closeButton}>결과보기</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuList}
+            onPress={() => clickMenu("setting")}
+          >
+            <Text style={styles.closeButton}>설정</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -53,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: height,
     left: -20,
-    top: 20,
+    top: 13,
     padding: 30,
   },
   menuList: {

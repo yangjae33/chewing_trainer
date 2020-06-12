@@ -11,16 +11,16 @@ import SideMenu from "../Common/SideMenu";
 const DeviceWidth = Dimensions.get("window").width;
 const Nav = createMaterialTopTabNavigator(
   {
+    // First: {
+    //   screen: StackHome,
+    //   navigationOptions: {
+    //     tabBarLabel: "홈 화면",
+    //     tabBarIcon: ({ color }) => (
+    //       <MaterialCommunityIcons name="home" color={"white"} size={26} />
+    //     ),
+    //   },
+    // },
     First: {
-      screen: StackHome,
-      navigationOptions: {
-        tabBarLabel: "홈 화면",
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="home" color={"white"} size={26} />
-        ),
-      },
-    },
-    Second: {
       screen: StackChewing,
       navigationOptions: {
         tabBarLabel: "측정하기",
@@ -33,7 +33,7 @@ const Nav = createMaterialTopTabNavigator(
         ),
       },
     },
-    Third: {
+    Second: {
       screen: StackResult,
       navigationOptions: {
         tabBarLabel: "결과보기",
@@ -44,10 +44,11 @@ const Nav = createMaterialTopTabNavigator(
     },
   },
   {
+    initialRouteName: "First",
     tabBarPosition: "bottom",
     tabBarOptions: {
       labelStyle: { fontSize: 12 },
-      tabStyle: { width: DeviceWidth / 3 },
+      tabStyle: { width: DeviceWidth / 2 },
       style: { backgroundColor: "#4169E1" },
       indicatorStyle: {
         opacity: 0,

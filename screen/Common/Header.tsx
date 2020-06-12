@@ -3,14 +3,16 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Appbar, Title } from "react-native-paper";
 import { Button } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Feather from "react-native-vector-icons/Feather";
 import Modal from "react-native-modal";
 import SideMenu from "./SideMenu";
 import { Dimensions } from "react-native";
+import { Fontisto } from "@expo/vector-icons";
 
 function Header({ titleText, prev, navigation }) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isMenuVisible, setMenuVisible] = useState(false);
-  console.log(isMenuVisible);
+
   const showExplainModal = () => {
     setModalVisible(true);
   };
@@ -22,46 +24,62 @@ function Header({ titleText, prev, navigation }) {
   };
   return (
     <Appbar.Header style={styles.headerContainer}>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.leftMenu}
-          onPress={() => showLeftMenu()}
-        >
-          <AntDesign size={24} name="questioncircleo" color="white" />
-        </TouchableOpacity>
-        <Title style={styles.title}>{titleText}</Title>
-        <TouchableOpacity
-          style={styles.prevBtn}
-          onPress={() => showExplainModal()}
-        >
-          <AntDesign size={24} name="questioncircleo" color="white" />
-        </TouchableOpacity>
-      </View>
-      <SideMenu
-        isMenuVisible={isMenuVisible}
-        setModalVisible={setModalVisible}
-        showSideMenuCallback={showSideMenuCallback}
-        navigation={navigation}
-      ></SideMenu>
-      <Modal isVisible={isModalVisible}>
-        <View style={styles.modalContent}>
-          <View style={styles.explainTopView}>
-            <Text style={styles.explainTitle}>설명서</Text>
-            <Text style={styles.programExplain}>
-              1. 디바이스를 장착합니다.{"\n"}
-              2. 측정하기 페이지로 이동합니다.{"\n"}
-              3. 측정 종료 후 디바이스를 해제합니다.{"\n"}
-              4. 통계 페이지에서 측정 데이터를 {"\n"} &nbsp;&nbsp;&nbsp; 확인
-              하실 수 있습니다.
-            </Text>
+      {prev ? (
+        <>
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.prevBtn}
+              onPress={() => navigation.goBack()}
+            >
+              <Fontisto size={24} name="close-a" color="white" />
+            </TouchableOpacity>
+            <Title style={styles.title}>{titleText}</Title>
           </View>
-          <View>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <Text style={styles.closeButton}>닫기</Text>
+        </>
+      ) : (
+        <>
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.leftMenu}
+              onPress={() => showLeftMenu()}
+            >
+              <Feather size={24} name="menu" color="white" />
+            </TouchableOpacity>
+            <Title style={styles.title}>{titleText}</Title>
+            <TouchableOpacity
+              style={styles.prevBtn}
+              onPress={() => showExplainModal()}
+            >
+              <AntDesign size={24} name="questioncircleo" color="white" />
             </TouchableOpacity>
           </View>
-        </View>
-      </Modal>
+          <SideMenu
+            isMenuVisible={isMenuVisible}
+            setModalVisible={setModalVisible}
+            showSideMenuCallback={showSideMenuCallback}
+            navigation={navigation}
+          ></SideMenu>
+          <Modal isVisible={isModalVisible}>
+            <View style={styles.modalContent}>
+              <View style={styles.explainTopView}>
+                <Text style={styles.explainTitle}>설명서</Text>
+                <Text style={styles.programExplain}>
+                  1. 디바이스를 장착합니다.{"\n"}
+                  2. 측정하기 페이지로 이동합니다.{"\n"}
+                  3. 측정 종료 후 디바이스를 해제합니다.{"\n"}
+                  4. 통계 페이지에서 측정 데이터를 {"\n"} &nbsp;&nbsp;&nbsp;
+                  확인 하실 수 있습니다.
+                </Text>
+              </View>
+              <View>
+                <TouchableOpacity onPress={() => setModalVisible(false)}>
+                  <Text style={styles.closeButton}>닫기</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+        </>
+      )}
     </Appbar.Header>
   );
 }
@@ -117,6 +135,7 @@ const styles = StyleSheet.create({
   explainTopView: {
     alignItems: "center",
   },
+  prevBtn: { position: "absolute", right: 20 },
 });
 
 export default Header;
