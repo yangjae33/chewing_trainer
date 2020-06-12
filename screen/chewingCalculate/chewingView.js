@@ -12,7 +12,7 @@ import { Dimensions } from "react-native";
 const screenWidth = Math.round(Dimensions.get("window").width);
 const screenHeight = Math.round(Dimensions.get("window").height);
 function chewingView({ navigation }) {
-  const [idx, setIdx] = useState(2);
+  const [idx, setIdx] = useState(1);
   const [imgIdx, setImgIdx] = useState(1);
   const [chewingText, setchewingText] = useState("측정 시작합니다");
 
@@ -65,32 +65,30 @@ function chewingView({ navigation }) {
       {idx == 2 && (
         <View style={styles.readyView}>
           <Text style={styles.chewingNumber}>총 씹은횟수: 5</Text>
-          <TouchableOpacity onPress={() => setIdx(idx + 1)}>
-            {imgIdx == 1 && (
-              <Image
-                source={require("./img/smile.png")}
-                style={styles.smileImg}
-              ></Image>
-            )}
-            {imgIdx == 2 && (
-              <Image
-                source={require("./img/left_mouse.png")}
-                style={styles.smileImg}
-              ></Image>
-            )}
-            {imgIdx == 3 && (
-              <Image
-                source={require("./img/right_mouse.png")}
-                style={styles.smileImg}
-              ></Image>
-            )}
-            {imgIdx == 4 && (
-              <Image
-                source={require("./img/both.png")}
-                style={styles.smileImg}
-              ></Image>
-            )}
-          </TouchableOpacity>
+          {imgIdx == 1 && (
+            <Image
+              source={require("./img/smile.png")}
+              style={styles.smileImg}
+            ></Image>
+          )}
+          {imgIdx == 2 && (
+            <Image
+              source={require("./img/left_mouse.png")}
+              style={styles.smileImg}
+            ></Image>
+          )}
+          {imgIdx == 3 && (
+            <Image
+              source={require("./img/right_mouse.png")}
+              style={styles.smileImg}
+            ></Image>
+          )}
+          {imgIdx == 4 && (
+            <Image
+              source={require("./img/both.png")}
+              style={styles.smileImg}
+            ></Image>
+          )}
           <Text style={styles.chewingText}>{chewingText}</Text>
           <Text style={styles.chewingLeftNumber}>왼쪽 : 3</Text>
           <Text style={styles.chewingRightNumber}>오른쪽 : 4</Text>
@@ -98,12 +96,21 @@ function chewingView({ navigation }) {
       )}
       {idx == 3 && (
         <View style={styles.readyView}>
-          <TouchableOpacity onPress={() => setIdx(idx + 1)}>
-            <Text style={styles.readyText}>결과화면</Text>
+          <TouchableOpacity
+            onPress={() => {
+              setIdx(1);
+              setImgIdx(1);
+            }}
+          >
+            <Text style={styles.tooth}>냠냠점수 : 80</Text>
             <Image
-              source={require("./img/ready.png")}
-              style={styles.readyImg}
+              source={require("./img/left_mouse_weight.png")}
+              style={styles.resultImg}
             ></Image>
+            <Text style={styles.feedback}>Feedback</Text>
+            <Text style={styles.feedbackContent}>
+              왼쪽으로 조금 더 씹으시고 씹는 횟수를 늘려보세요!
+            </Text>
           </TouchableOpacity>
         </View>
       )}
@@ -112,6 +119,23 @@ function chewingView({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  tooth: {
+    fontSize: 20,
+    paddingBottom: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  feedbackContent: {
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 5,
+  },
+  feedback: {
+    fontSize: 20,
+    marginTop: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
   chewingNumber: {
     fontWeight: "bold",
     paddingBottom: 30,
@@ -151,6 +175,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   readyImg: {
+    width: 320,
+    height: 280,
+  },
+  resultImg: {
     width: 320,
     height: 280,
   },
