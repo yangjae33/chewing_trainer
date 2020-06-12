@@ -10,7 +10,7 @@ import {
 import Header from "../Common/Header";
 import { Container, Content } from "native-base";
 import Entypo from "react-native-vector-icons/Entypo";
-function homeView() {
+function homeView({ navigation }) {
   const [isPencilEdit, setIsPencilEdit] = useState(false);
   const [inputValue, setinputValue] = useState();
   const [userName, setUserName] = useState("이름을 설정해주세요");
@@ -26,7 +26,7 @@ function homeView() {
     <>
       <Container style={styles.homeViewContainer}>
         <Content contentContainerStyle={{ flex: 1, backgroundColor: "white" }}>
-          <Header titleText="홈 화면"></Header>
+          <Header titleText="홈 화면" navigation={navigation}></Header>
           <View style={styles.homeView}>
             <Text style={styles.scoreTitle}>총 냠냠점수 : 89점</Text>
             <Text>상위 23.8%</Text>

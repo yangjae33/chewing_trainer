@@ -15,10 +15,31 @@ function SideMenu({ navigation, showSideMenuCallback, isMenuVisible }) {
       isVisible={isMenuVisible}
     >
       <View style={styles.modalContent}>
-        <Text>메뉴</Text>
-        <View>
-          <TouchableOpacity onPress={() => showSideMenuCallback(false)}>
+        <View style={styles.menuView}>
+          <TouchableOpacity
+            style={styles.menuList}
+            onPress={() => showSideMenuCallback(false)}
+          >
             <Text style={styles.closeButton}>닫기</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.menuList}
+            onPress={() => navigation.navigate("homeView")}
+          >
+            <Text style={styles.closeButton}>메뉴1</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuList}
+            onPress={() => navigation.navigate("chewingView")}
+          >
+            <Text style={styles.closeButton}>메뉴2</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuList}
+            onPress={() => navigation.navigate("resultView")}
+          >
+            <Text style={styles.closeButton}>메뉴3</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -33,6 +54,10 @@ const styles = StyleSheet.create({
     height: height,
     left: -20,
     top: 20,
+    padding: 30,
+  },
+  menuList: {
+    padding: 10,
   },
 });
 export default SideMenu;

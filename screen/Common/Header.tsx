@@ -41,6 +41,7 @@ function Header({ titleText, prev, navigation }) {
         isMenuVisible={isMenuVisible}
         setModalVisible={setModalVisible}
         showSideMenuCallback={showSideMenuCallback}
+        navigation={navigation}
       ></SideMenu>
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContent}>
