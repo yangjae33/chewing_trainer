@@ -11,7 +11,6 @@ function Setting({ navigation }) {
       url: "http://crerarlab.com/homepage/temp_get.php",
       headers: { "Content-Type": "multipart/form-data" },
     }).then((response) => {
-      console.log("엥", response);
       setCount(response.data.result);
     });
   };

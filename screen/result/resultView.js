@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, Button, Platform } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+  Platform,
+  ScrollView,
+} from "react-native";
 import { Container, Content } from "native-base";
 import Header from "../Common/Header";
 import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
@@ -57,13 +65,18 @@ function resultView({ navigation }) {
                 />
               </View>
             </View>
-            {val == 0 ? (
-              <DailyRes />
-            ) : val == 1 ? (
-              <WeeklyRes />
-            ) : (
-              <MonthlyRes />
-            )}
+            <ScrollView
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+            >
+              {val == 0 ? (
+                <DailyRes />
+              ) : val == 1 ? (
+                <WeeklyRes />
+              ) : (
+                <MonthlyRes />
+              )}
+            </ScrollView>
           </View>
         </Content>
       </Container>
