@@ -1,6 +1,9 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import { createMaterialTopTabNavigator } from "react-navigation-tabs";
-import { View, Text, Dimensions } from "react-native";
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabBar,
+} from "react-navigation-tabs";
+import { View, Text, Dimensions, SafeAreaView, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Foundation from "react-native-vector-icons/Foundation";
@@ -9,6 +12,15 @@ import StackHome from "./homeNav";
 import StackResult from "./resultNav";
 import SideMenu from "../Common/SideMenu";
 const DeviceWidth = Dimensions.get("window").width;
+
+function SafeAreaMaterialTopTabBar(props) {
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <MaterialTopTabBar {...props} />
+    </SafeAreaView>
+  );
+}
+
 const Nav = createMaterialTopTabNavigator(
   {
     // First: {
@@ -57,7 +69,12 @@ const Nav = createMaterialTopTabNavigator(
       inactiveTintColor: "#C3C3C3",
       showIcon: true,
     },
+    tabBarComponent: SafeAreaMaterialTopTabBar,
   }
 );
 
 export default createAppContainer(Nav);
+
+const styles = StyleSheet.create({
+  safeArea: {},
+});
