@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Header from "../Common/Header";
 import Axios from "axios";
-
+console.disableYellowBox = true;
 function Setting({ navigation }) {
   const [count, setCount] = useState(0);
   const [count2, setCount2] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      temp();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      temp2();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
   const temp = () => {
     Axios({
       method: "GET",
@@ -24,8 +36,6 @@ function Setting({ navigation }) {
       setCount2(response.data.result);
     });
   };
-  setInterval(temp, 1000);
-  setInterval(temp2, 1000);
 
   return (
     <>
